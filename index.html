@@ -1,25 +1,54 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Rubik+Beastly&display=swap');
+        </style>
         <link rel="stylesheet" type="text/css" href="./style.css"> 
     </head>
-
+    
     <body>
-        <div id="Stats">
-            <h3>
-                NAME: <span id="Name"></span>
-            </h3>
-            <h3>
-                VITALITY: <span id="HP"></span>
-            </h3>
-            <h3>
-                STRENGTH: <span id="ATK"></span>
-            </h3>
-            <h3>
-                CONSTITUTION: <span id="DEF"></span>
-            </h3>
-        </div>
-        <button onclick="Fight()">
+
+    <div class="typed">
+    <h1>
+        Hello, wanderer . . . 
+    </h1>
+    </div>
+    
+    <!--How do I make this down here replace first header after a certain time?-->
+    <!-- I want this to be up at the top, same place h1 is. So will this just be-->
+    <!-- something under h1?-->
+    <div class="typed">
+    <h2 style="text-align: center;">
+        Choose your form.
+    </h2>
+    </div>
+
+
+    <p class="characterGallery">
+        <button class="characterButton" id="Mel" onclick="Melstats()"> <img src="sleepy.png"> <br> MEL PLACEHOLDER </button>
+        <button class="characterButton" id="Pocket"> <img src="sleepy.png"> <br> POCKET PLACEHOLDER </button>
+        <button class="characterButton" id="Spider"> <img src="sleepy.png"> <br> SPIDER PLACEHOLDER </button>
+    </p>
+        
+
+    <div id="Stats">
+        <h3>
+            NAME: <span id="Name"></span>
+        </h3>
+        <h3>
+            VITALITY: <span id="HP"></span>
+        </h3>
+        <h3>
+            STRENGTH: <span id="ATK"></span>
+        </h3>
+        <h3>
+            CONSTITUTION: <span id="DEF"></span>
+        </h3>
+    </div>
+
+
+        <button id="fightButton" onclick="Fight()">
             Fight!
         </button>
         <script type="text/javascript" src="./app.js"></script>
