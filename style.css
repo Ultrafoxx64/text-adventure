@@ -1,0 +1,93 @@
+.h1 {
+    text-align: center;
+    width: 50%;
+    height: 80%;
+}
+
+.h2 {
+    text-align: center;
+}
+
+.typed {
+    overflow: hidden;
+    white-space: nowrap;
+    margin: 0 auto;
+    text-align: center;
+    font-family:'Rubik Beastly';
+    font-weight: lighter;
+    border-right:.15em solid rgb(95, 1, 20);
+    letter-spacing: .15em;
+    animation: 
+    typing 10s steps(110, end),
+    blink-caret .75s step-end infinite;
+    max-height: fit-content;
+    max-width: fit-content;
+}
+        /*Now how do I have the cursor disappear after blinking a few times at the end?"
+        /*Does it have to be in a seperate animation?*/
+        /*Can't get rid of step-end infinite because that's what's causing the cursor 
+        /*animation to continue blinking. Is a JS animation more applicable here?*/
+
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100%}
+  }
+
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: rgb(95, 1, 20) }
+  }
+
+/*Not doing what I want it to do, but right track?*/
+@keyframes hide {
+    to {
+        opacity: 0;
+    }
+}
+
+
+#fightButton {
+    transition: background-color 3s, transform 1s;
+}
+
+#fightButton:hover {
+    background-color: red;
+    transform: rotate(360deg);
+}
+
+p.characterGallery {
+    width: auto;
+    margin: auto;
+    align-content: center;
+}
+
+.characterButton {
+    height: 50%;
+    width: 20%;
+    border: solid, 5px;
+    margin-right: 2%;
+    margin-left: 2%;
+    align-content: center;
+}
+
+div.characterGallery img {
+    height: fit-content;
+    width: fit-content;
+    align-content: center;
+}
+
+#Mel:hover {
+    background-color: rgb(255, 105, 46);
+    transition: 1s;
+}
+
+#Pocket:hover {
+    background-color: rgb(80, 5, 114);
+    transition: 1s;
+}
+
+#Spider:hover {
+    background-color: rgb(255, 0, 221);
+    transition: 1s;
+    animation: flip;
+}
