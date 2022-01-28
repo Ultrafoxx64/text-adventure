@@ -5,30 +5,33 @@
 //Or do you need a seperate const for every character? There has to be a way//
 //that you can just make a general 'player' function and then further specify, no?//
 //Is this where nesting comes in?//
-const Melstats = {
-    name: "Mel",
-    hp: 500,
-    atk: 7,
-    def: 6,
+const players = [
+    {
+        name: "Mel",
+        hp: 500,
+        atk: 7,
+        def: 6,
+    },
+
+    {   name: "Pocket",
+        hp: 500,
+        atk: 7,
+        def: 6
+    },
+    {
+        name: "Spider",
+        hp: 500,
+        atk: 7,
+        def: 6
+    }
+];
+var fightingPlayer = {
+    name: "",
+    hp: 0,
+    atk: 0,
+    def: 0
 };
 
-//document.getElementById("Stats").innerHTML =  Melstats;//
-//not what works, but am I on the right track, sorta?//
-//basically want it to be like onclick -> display stats of chosen character//
-
-const Pocket = {
-    name: "Pocket",
-    hp: 500,
-    atk: 7,
-    def: 6
-};
-
-const Spider = {
-    name: "Spider",
-    hp: 500,
-    atk: 7,
-    def: 6
-};
 
 const enemy = {
     name: "Apparition",
@@ -42,30 +45,65 @@ const enemy = {
     //def: 10,
 };
 
+const ShowPlayerStats = (playerName) => {
+    var activePlayer = (players.find( ({name}) => name === playerName));
+    console.log(activePlayer);
+    displayPlayerStats(activePlayer);
+    setFightingPlayer (activePlayer);
+}
 
-console.log("Player Stats:", Melstats.name, "HP", Melstats.hp, "Atk", Melstats, "Def", Melstats.def);
+const setFightingPlayer = (playerObj) => {
+    fightingPlayer = {
+        name: playerObj.name,
+        hp: playerObj.hp,
+        atk: playerObj.atk,
+        def: playerObj.def
+    }
+};
 
+const displayPlayerStats = (playerObj) => {
+    document.getElementById('Name').innerHTML=playerObj.name
+    document.getElementById('HP').innerHTML=playerObj.hp
+    document.getElementById('ATK').innerHTML=playerObj.atk
+    document.getElementById('DEF').innerHTML=playerObj.def
 
-document.getElementById('Name').innerHTML=Melstats.name
-document.getElementById('HP').innerHTML=Melstats.hp
-document.getElementById('ATK').innerHTML=Melstats.atk
-document.getElementById('DEF').innerHTML=Melstats.def
+}
+
+const updatePlayerStats = (playerObj) => {
+    var activePlayerIndex = players.findIndex( ({name}) => name === playerObj.name);
+    players[activePlayerIndex] = {
+        name: playerObj.name,
+        hp: playerObj.hp,
+        atk: playerObj.atk,
+        def: playerObj.def
+    }
+//console.log(activePlayerIndex, players[activePlayerIndex])
+}
+
+//console.log("Player Stats:", Melstats.name, "HP", Melstats.hp, "Atk", Melstats, "Def", Melstats.def);
+
+displayPlayerStats(players[0]);
+setFightingPlayer (players[0]);
 
 const Fight = () => {
-    enemy.hp = enemy.hp-Multiplier(person.atk) + Multiplier(enemy.def); 
-    person.hp = person.hp-Multiplier(enemy.atk) + Multiplier(person.def);
+    enemy.hp = enemy.hp-fightResult(Multiplier(fightingPlayer.atk), Multiplier(enemy.def)); 
+    fightingPlayer.hp = fightingPlayer.hp-fightResult(Multiplier(enemy.atk), Multiplier(fightingPlayer.def));
     console.log("Enemy",enemy.hp);
-    console.log(person.name, person.hp);
-    document.getElementById('HP').innerHTML=person.hp
+    console.log(fightingPlayer.name, fightingPlayer.hp);
+    updatePlayerStats(fightingPlayer);
+    document.getElementById('HP').innerHTML=fightingPlayer.hp
 }
 
 const Multiplier = (input) => {
     return Math.floor(Math.random()*input)
 }
 
-const NoHeals = () => {
-    if (enemy.hp > 200) 
-    return enemy.hp;
+const fightResult = (atk,def) => {
+    if(def >= atk){
+        return 0;
+    }else{
+        return atk-def;
+    }
 }
 
 //this what I need to replace h1 with h2, maybe?//
